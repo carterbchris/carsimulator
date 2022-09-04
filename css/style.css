@@ -1,0 +1,214 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--dash-color);
+}
+
+:root {
+  --tach-size: 150px;
+  --tach-needle-size: calc(var(--tach-size) * .8);
+  --dash-color: rgb(21, 21, 21);
+  --bezel-color: rgb(194, 187, 175);
+  --tach-background: rgb(48, 48, 48);
+  --tach-needle-color: rgb(119, 2, 2);
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+img{
+  display: block;
+  margin: 0 auto;
+}
+
+.dash {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.tach {
+  content: '';
+  display: flex;
+  width: calc(var(--tach-size) * 2.5);
+  height: var(--tach-size);
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  background-color: var(--tach-background);
+  border: 3px solid var(--bezel-color);
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: background-color .4s ease-in-out
+}
+
+.label {
+  height: 25px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.zero {
+  bottom: 5px;
+  left: 10px;
+}
+
+.one {
+  bottom: 50px;
+  left: 20px;
+}
+
+.two {
+  bottom: 85px;
+  left: 50px;
+}
+
+.three {
+  bottom: 100px;
+  left: 92px;
+}
+
+.four {
+  bottom: 110px;
+  left: 140px;
+}
+
+.five {
+  bottom: 110px;
+  left: 190px;
+}
+
+.six {
+  bottom: 100px;
+  left: 245px;
+}
+
+.seven {
+  bottom: 75px;
+  left: 290px;
+}
+
+.eight {
+  bottom: 45px;
+  left: 310px;
+}
+
+.nine {
+  bottom: 10px;
+  left: 325px;
+}
+
+.tach-needle {
+  content: '';
+  background-color: var(--tach-needle-color);
+  height: var(--tach-needle-size);
+  width: calc(var(--tach-needle-size) * .05);
+  position: absolute;
+  border-top-right-radius: 45%;
+  border-top-left-radius: 45%;
+  transform-origin: bottom;
+  transform: rotate(-89deg);
+  transition: transform 0.5s;
+}
+
+.startUp {
+  -webkit-animation: startUp 3s ease-in-out;
+  animation: startUp 3s ease-in-out;
+}
+
+@keyframes startUp {
+  0% {transform: rotate(-89deg);}
+  50% {transform: rotate(87deg);}
+  100% {transform: rotate(-78deg);}
+}
+
+.start::before {
+  content: '';
+  height: 85px;
+  width: 85px;
+  background-color: rgb(136, 2, 2);
+  border: 3px solid var(--bezel-color);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -75%;
+  transform: translateX(-50%);
+}
+
+.start::after {
+  content: '';
+  height: 80px;
+  width: 80px;
+  background-color: red;
+  border: 1px solid var(--bezel-color);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -68%;
+  transform: translateX(-50%);
+}
+
+.start:hover::after, .start.running::after {
+  bottom: -71%;
+}
+/* Speedo */
+
+.speedo {
+  content: '';
+  height: 145px;
+  width: 145px;
+  background-color: rgb(79, 26, 26);
+  border: 3px solid var(--bezel-color);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.speedo-number {
+  content: '';
+  height: 98px;
+  width: 84px;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  font-size: 40px;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: rgba(38, 28, 28, .7);
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gear-indicator {
+  content: '';
+  height: 98px;
+  width: 84px;
+  text-align: center;
+  color:rgba(38, 28, 28, .0);
+  font-weight: 700;
+  font-size: 24px;
+  font-family: 'Helvetica Neue', sans-serif;
+  position: absolute;
+  bottom: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+}
